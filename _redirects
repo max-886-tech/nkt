@@ -1,0 +1,6 @@
+# (Optional) if you have a separate homepage
+/ /index.html 200
+
+# Dynamic keyword + location pages
+# Pattern: /{service}-in-{city}/ → serve /landing.html but keep the URL
+/:service-in-:city /landing.html 200
