@@ -1,0 +1,3 @@
+/about /about/index.html 200
+/contact /contact/index.html 200
+/:service-in-:city /index.html 200
