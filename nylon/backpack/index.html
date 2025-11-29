@@ -1,455 +1,167 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Backpack Manufacturers - Nekton India</title>
-    <meta name="description"
-          content="Nekton India – backpack manufacturers in Mumbai offering custom corporate, school, laptop and travel backpacks with branding and export support.">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-          crossorigin="anonymous">
-  </head>
-  <body class="bg-light">
+  <title>Nekton India – Location Page</title>
+  <meta
+    name="description"
+    content="Dynamic location-based page for Nekton India."
+  />
 
-    <!-- Top contact bar -->
-    <div class="bg-dark text-white py-1">
-      <div class="container d-flex flex-wrap justify-content-between align-items-center small">
-        <div class="mb-1 mb-sm-0">
-          <span class="me-3">
-            <i class="bi bi-envelope"></i>
-            <a href="mailto:[email protected]" class="link-light text-decoration-none">[email protected]</a>
-          </span>
-          <span>
-            <i class="bi bi-telephone"></i>
-            <a href="tel:+917900098455" class="link-light text-decoration-none">+91 790 009 8455</a>
-          </span>
-        </div>
-        <div>
-          <a href="/faq" class="link-light text-decoration-none me-3">FAQ's</a>
-          <a href="/blog" class="link-light text-decoration-none">Our Blog</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="/">Nekton India</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#mainNavbar" aria-controls="mainNavbar"
-                aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="mainNavbar">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button"
-                 data-bs-toggle="dropdown" aria-expanded="false">
-                Nylon Bags
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Backpack Manufacturers</a></li>
-                <li><a class="dropdown-item" href="#">School Bag Manufacturers</a></li>
-                <li><a class="dropdown-item" href="#">College Bag Manufacturers</a></li>
-                <li><a class="dropdown-item" href="#">Delivery Bag Manufacturers</a></li>
-                <li><a class="dropdown-item" href="#">Laptop Bag Manufacturers</a></li>
-              </ul>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">Leather Bags</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">Wooden Products</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background:#f3f4f6; }
+    header, footer { background: #111827; color: #fff; padding: 16px 20px; }
+    header h1, footer p { margin: 0; }
+    nav a { color:#e5e7eb; margin-right:15px; text-decoration:none; font-size:14px; }
+    nav a:hover { text-decoration:underline; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px; background:#ffffff; margin-top:20px; margin-bottom:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05); border-radius:8px; }
+    h1 { font-size: 28px; margin-bottom: 10px; }
+    h2 { margin-top: 30px; }
+    .highlight { font-weight: bold; color: #d97757; }
+    ul, ol { padding-left:20px; }
+    .cta-box { border: 1px solid #e5e7eb; padding: 16px; margin-top: 20px; background: #f9fafb; border-radius:6px; }
+    .cta-button {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #2563eb;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-weight:600;
+    }
+    .cta-button:hover { background: #1d4ed8; }
+  </style>
+</head>
+<body>
+<header>
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h1>Nekton India</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
     </nav>
+  </div>
+</header>
 
-    <!-- Main content -->
-    <main class="py-4 py-md-5">
-      <div class="container">
-        <div class="row g-4">
-          <!-- Left column: content -->
-          <div class="col-lg-8">
+<div class="container">
+  <h1>
+    <span data-service>Bag Manufacturers</span>
+    in
+    <span data-city>Mumbai</span>
+  </h1>
 
-            <!-- Breadcrumb -->
-            <nav aria-label="breadcrumb" class="mb-3">
-              <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Backpack Manufacturers</li>
-              </ol>
-            </nav>
+  <p>
+    Are you looking for trusted
+    <span class="highlight">
+      <span data-service>Bag Manufacturers</span> in
+      <span data-city>Mumbai</span>
+    </span>?
+    Nekton India helps you connect with verified manufacturers and suppliers for wholesale, retail, and custom orders.
+  </p>
 
-            <!-- Hero title & intro -->
-            <section class="mb-4">
-              <h1 class="h2 fw-bold mb-3">Backpack Manufacturers</h1>
-              <p class="lead mb-3">
-                Explore the world of backpack and bag manufacturing in Mumbai with
-                <strong>Nekton India</strong>. We make customised corporate, school and
-                travel backpacks, and export bags worldwide from our Dharavi facility.
-              </p>
-              <p class="mb-0">
-                From everyday office backpacks to high-capacity travel and institute bags,
-                we design and manufacture products that balance durability, function and
-                branding. Our team can work from your concept, reference sample or technical
-                drawing to build the exact backpack you need.
-              </p>
-            </section>
+  <p>
+    Our partners in <span data-city>Mumbai</span> specialize in high-quality materials, competitive pricing, and
+    reliable delivery timelines. Whether you are a brand, reseller, or corporate buyer, we can help you source the right
+    products at the right scale.
+  </p>
 
-            <!-- Product grid -->
-            <section class="mb-5">
-              <h2 class="h4 mb-3">Sample Backpack Designs</h2>
-              <p class="small text-muted mb-3">
-                A few examples from our collection. Codes are for internal reference – we also
-                manufacture completely custom designs.
-              </p>
+  <h2>Why Choose Nekton India for <span data-service>Bag Manufacturers</span> in <span data-city>Mumbai</span>?</h2>
+  <ul>
+    <li>Verified manufacturing units in and around <span data-city>Mumbai</span></li>
+    <li>Flexible MOQs for startups & established brands</li>
+    <li>Custom design, branding, and private label options</li>
+    <li>Support for export orders and pan-India shipping</li>
+  </ul>
 
-              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  <h2>How It Works</h2>
+  <ol>
+    <li>Tell us your requirement (type of product, quantity, budget, delivery location).</li>
+    <li>We match you with suitable factories / suppliers in <span data-city>Mumbai</span>.</li>
+    <li>Get quotations, samples, and finalize your order.</li>
+  </ol>
 
-                <!-- Card 1 -->
-                <div class="col">
-                  <div class="card h-100">
-                    <img src="https://ik.imagekit.io/xqub8jq067z/wp-content/uploads/2025/02/backpacks-for-men-office-use-scaled.jpg"
-                         class="card-img-top" alt="Premium office and laptop backpack">
-                    <div class="card-body">
-                      <h3 class="h6 card-title mb-1">BACKPACK-001</h3>
-                      <p class="card-text small mb-0">
-                        Sleek office laptop backpack with hidden zippers and organiser pockets.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+  <div class="cta-box">
+    <h2>Get Quotes from <span data-service>Bag Manufacturers</span> in <span data-city>Mumbai</span></h2>
+    <p>
+      Share your requirements and our team will connect you with the best options in
+      <span data-city>Mumbai</span> within 24–48 hours.
+    </p>
+    <a class="cta-button" id="cta-link" href="#">
+      Request Quotes Now
+    </a>
+  </div>
+</div>
 
-                <!-- Card 2 -->
-                <div class="col">
-                  <div class="card h-100">
-                    <img src="https://ik.imagekit.io/xqub8jq067z/wp-content/uploads/2025/01/Bag_Manufacturers_in_Mumbai-scaled.jpg"
-                         class="card-img-top" alt="Conference backpack with logo embroidery">
-                    <div class="card-body">
-                      <h3 class="h6 card-title mb-1">BACKPACK-002</h3>
-                      <p class="card-text small mb-0">
-                        Conference backpack with front embroidery, side bottle holder and USB port.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+<footer>
+  <p>&copy; <span id="year"></span> Nekton India. All rights reserved.</p>
+</footer>
 
-                <!-- Card 3 -->
-                <div class="col">
-                  <div class="card h-100">
-                    <img src="https://ik.imagekit.io/xqub8jq067z/wp-content/uploads/2025/01/bag_manufacturer-scaled.jpg"
-                         class="card-img-top" alt="Everyday backpack with front pocket">
-                    <div class="card-body">
-                      <h3 class="h6 card-title mb-1">BACKPACK-003</h3>
-                      <p class="card-text small mb-0">
-                        Daily-use backpack suitable for staff gifting and institute branding.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+<script>
+  function toTitle(str) {
+    return str
+      .replace(/-/g, " ")
+      .split(" ")
+      .filter(Boolean)
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      .join(" ");
+  }
 
-                <!-- Card 4 -->
-                <div class="col">
-                  <div class="card h-100">
-                    <img src="https://ik.imagekit.io/xqub8jq067z/wp-content/uploads/2025/01/Bag_manufacturer-3-scaled.jpg"
-                         class="card-img-top" alt="Dual tone corporate backpack">
-                    <div class="card-body">
-                      <h3 class="h6 card-title mb-1">BACKPACK-004</h3>
-                      <p class="card-text small mb-0">
-                        Dual-tone corporate backpack with padded laptop section and contrast details.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+  let serviceSlug = "bag-manufacturers";
+  let citySlug    = "mumbai";
 
-                <!-- Card 5 -->
-                <div class="col">
-                  <div class="card h-100">
-                    <img src="https://ik.imagekit.io/xqub8jq067z/wp-content/uploads/2025/01/Bag_Manufacturer-1-scaled.jpg"
-                         class="card-img-top" alt="Backpack with coloured accents">
-                    <div class="card-body">
-                      <h3 class="h6 card-title mb-1">BACKPACK-005</h3>
-                      <p class="card-text small mb-0">
-                        Backpack for institutes and coaching classes with bold coloured piping.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+  const pathname = window.location.pathname.replace(/^\/+|\/+$/g, "");
+  const lastSeg  = pathname.split("/").pop();
+  const marker   = "-in-";
+  const idx      = lastSeg.toLowerCase().lastIndexOf(marker);
 
-                <!-- Example extra card you can duplicate -->
-                <div class="col">
-                  <div class="card h-100">
-                    <img src="https://ik.imagekit.io/xqub8jq067z/wp-content/uploads/2025/01/Bag_Manufacturers_in_Mumbai-scaled.jpg"
-                         class="card-img-top" alt="Custom logo backpack">
-                    <div class="card-body">
-                      <h3 class="h6 card-title mb-1">BACKPACK-006</h3>
-                      <p class="card-text small mb-0">
-                        Custom logo backpack tailored for corporate gifting campaigns.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+  if (idx > 0) {
+    serviceSlug = lastSeg.slice(0, idx);
+    citySlug    = lastSeg.slice(idx + marker.length);
+  } else if (lastSeg) {
+    citySlug = lastSeg;
+  }
 
-              </div>
+  const serviceMap = {
+    "bag-manufacturers": "Bag Manufacturers",
+    "bag-suppliers": "Bag Suppliers",
+    "leather-bag-manufacturers": "Leather Bag Manufacturers",
+    "leather-bag-suppliers": "Leather Bag Suppliers"
+  };
 
-              <p class="small text-muted mt-3 mb-0">
-                Need something different? Share your reference image or specification and we’ll
-                develop a new sample for you.
-              </p>
-            </section>
+  const cityMap = {
+    "mumbai": "Mumbai",
+    "dharavi": "Dharavi",
+    "delhi": "Delhi",
+    "thane": "Thane"
+  };
 
-            <!-- Info sections -->
-            <section class="mb-4">
-              <h2 class="h4 mb-3">Materials & Manufacturing</h2>
-              <p>
-                We manufacture backpacks in a wide range of materials including nylon, polyester,
-                canvas, PP and genuine or vegan leather. Nylon and polyester remain the most
-                popular choices thanks to their strength, light weight and colour options.
-              </p>
-              <p>
-                100% waterproof construction is possible with special fabrics, heat-sealed seams
-                and coated zippers. For most corporate and institute orders we recommend
-                “water-resistant” backpacks that balance protection, looks and cost.
-              </p>
-            </section>
+  const serviceName = serviceMap[serviceSlug.toLowerCase()] || toTitle(serviceSlug);
+  const cityName    = cityMap[citySlug.toLowerCase()]       || toTitle(citySlug);
 
-            <section class="mb-4">
-              <h2 class="h4 mb-3">Customisation & Branding</h2>
-              <p>
-                Every backpack project can be customised – fabric colours, contrast panels,
-                zipper pullers, inner organisers and back padding can all be tuned as per your
-                brief. We can add your branding using embroidery, printing, patches or metal
-                badges depending on the design.
-              </p>
-              <p>
-                Our team works closely with your marketing or purchase team to finalise
-                branding placement so your logo is clearly visible without compromising the
-                overall aesthetics of the bag.
-              </p>
-            </section>
+  document.querySelectorAll("[data-service]").forEach(el => el.textContent = serviceName);
+  document.querySelectorAll("[data-city]").forEach(el => el.textContent = cityName);
 
-            <section class="mb-4">
-              <h2 class="h4 mb-3">Who We Work With</h2>
-              <p>
-                Nekton India supplies backpacks to institutes, coaching centres, corporates,
-                exporters, e-commerce brands and merchandising companies. Whether you need
-                100 bags or 10,000+ units, we can plan production and logistics accordingly.
-              </p>
-              <p class="mb-0">
-                We also manufacture related products like laptop sleeves, duffle bags, trolleys,
-                courier bags and leather accessories – making it easier to source your entire
-                range from a single vendor.
-              </p>
-            </section>
+  const fullTitle = serviceName + " in " + cityName + " | Nekton India";
+  document.title = fullTitle;
 
-            <!-- Reviews -->
-            <section class="mb-5">
-              <h2 class="h4 mb-3">What Our Clients Say</h2>
+  const desc =
+    "Looking for reliable " + serviceName + " in " + cityName +
+    "? Nekton India connects you with trusted manufacturers and suppliers for bulk and custom orders.";
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute("content", desc);
 
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h3 class="h6 card-title mb-1">Mehul Pathak</h3>
-                      <p class="small text-warning mb-1">★★★★★</p>
-                      <p class="card-text small mb-0">
-                        “Many design options, easy sampling and on-time delivery.
-                        Very professional and polite team to work with.”
-                      </p>
-                    </div>
-                  </div>
-                </div>
+  const cta = document.getElementById("cta-link");
+  if (cta) {
+    cta.href =
+      "/contact?service=" + encodeURIComponent(serviceSlug) +
+      "&city=" + encodeURIComponent(citySlug);
+  }
 
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h3 class="h6 card-title mb-1">Shakeel Shadab</h3>
-                      <p class="small text-warning mb-1">★★★★★</p>
-                      <p class="card-text small mb-0">
-                        “We ordered 500 backpacks for our institute – quality is excellent,
-                        the process was smooth and support was responsive throughout.”
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h3 class="h6 card-title mb-1">Lalit Pathak</h3>
-                      <p class="small text-warning mb-1">★★★★★</p>
-                      <p class="card-text small mb-0">
-                        “Diwali staff gifting order – the bags were well received and we look
-                        forward to working together again.”
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h3 class="h6 card-title mb-1">Muskan Khan</h3>
-                      <p class="small text-warning mb-1">★★★★★</p>
-                      <p class="card-text small mb-0">
-                        “Quick response, clear pricing and delivery as promised.
-                        Overall a very good experience.”
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <p class="small text-muted mt-3 mb-0">
-                Google rating: <strong>4.9 / 5</strong> from customers who have ordered
-                backpacks, laptop bags and other products from us.
-              </p>
-            </section>
-
-          </div>
-
-          <!-- Right column: contact card / sidebar -->
-          <div class="col-lg-4">
-
-            <div class="card mb-4">
-              <div class="card-body">
-                <h2 class="h5 card-title">Talk to a Bag Specialist</h2>
-                <p class="small mb-3">
-                  Share your requirement and we’ll guide you on fabrics, sizes, branding and
-                  packing options for your next backpack order.
-                </p>
-                <ul class="list-unstyled small mb-3">
-                  <li class="mb-1">
-                    <strong>Address:</strong><br>
-                    85/231, Floor-1, Plot 12, Banwari Compound, Dharavi, Mumbai, India
-                  </li>
-                  <li class="mb-1">
-                    <strong>Phone:</strong>
-                    <a href="tel:+917900098455" class="text-decoration-none">+91 790 009 8455</a>
-                  </li>
-                  <li class="mb-1">
-                    <strong>Email:</strong>
-                    <a href="mailto:[email protected]" class="text-decoration-none">[email protected]</a>
-                  </li>
-                </ul>
-                <div class="d-grid gap-2">
-                  <a href="https://api.whatsapp.com/send?phone=917900098455"
-                     class="btn btn-success btn-sm">Chat on WhatsApp</a>
-                  <a href="#contact-form" class="btn btn-primary btn-sm">Request Quote</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="card mb-4">
-              <div class="card-body">
-                <h2 class="h6 card-title mb-2">Office Hours</h2>
-                <ul class="list-unstyled small mb-0">
-                  <li>Monday – Saturday: 9:00 am to 7:00 pm</li>
-                  <li>Sunday: Closed</li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Simple contact form at bottom -->
-        <section id="contact-form" class="mt-4">
-          <div class="row justify-content-center">
-            <div class="col-lg-10">
-              <div class="card">
-                <div class="card-body">
-                  <h2 class="h5 mb-3">Request a Backpack Quote</h2>
-                  <form>
-                    <div class="row g-3">
-                      <div class="col-md-6">
-                        <label class="form-label">Name</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label class="form-label">Company / Institute</label>
-                        <input type="text" class="form-control">
-                      </div>
-                      <div class="col-md-6">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label class="form-label">Mobile</label>
-                        <input type="tel" class="form-control">
-                      </div>
-                      <div class="col-md-6">
-                        <label class="form-label">Approx. Quantity</label>
-                        <input type="number" class="form-control">
-                      </div>
-                      <div class="col-md-6">
-                        <label class="form-label">Needed By (month)</label>
-                        <input type="text" class="form-control" placeholder="e.g. August 2025">
-                      </div>
-                      <div class="col-12">
-                        <label class="form-label">Requirements / Notes</label>
-                        <textarea class="form-control" rows="4"
-                                  placeholder="Share details like fabric, laptop size, branding, delivery city etc."></textarea>
-                      </div>
-                    </div>
-                    <div class="mt-3">
-                      <button type="submit" class="btn btn-primary">
-                        Submit Enquiry
-                      </button>
-                      <span class="small text-muted ms-2">
-                        (Form is static – hook it to email, CRM or form service as needed.)
-                      </span>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white mt-5">
-      <div class="container py-3 small d-flex flex-column flex-md-row justify-content-between align-items-center">
-        <div class="mb-2 mb-md-0">
-          © 2021–<span id="year"></span> Nekton India. All rights reserved.
-        </div>
-        <div>
-          Site managed with ❤️ by <a href="https://eleafmedia.com" class="link-light text-decoration-none">E-Leaf Media</a>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"></script>
-
-    <script>
-      // footer year
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-  </body>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
 </html>
