@@ -2,4 +2,4 @@
 /contact /contact/index.html 200
 
 /:service-in-:city /:service-in-:city/ 301
-/:service-in-:city/ /routes.html 200
+/:service-in-:city/ /landing.html 200
