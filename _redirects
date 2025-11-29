@@ -1,5 +1,5 @@
-/about /about.html 200
-/contact /contact.html 200
+/about /about/index.html 200
+/contact /contact/index.html 200
 
-/:service-in-:city /:service-in-:city/ 200
-/:service-in-:city/ /landing.html 200
+/:service-in-:city /:service-in-:city/ 301
+/:service-in-:city/ /landing/index.html 200
