@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Nekton India – Location Page</title>
+  <meta
+    name="description"
+    content="Dynamic location-based page for Nekton India."
+  />
+
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background:#f3f4f6; }
+    header, footer { background: #111827; color: #fff; padding: 16px 20px; }
+    header h1, footer p { margin: 0; }
+    nav a { color:#e5e7eb; margin-right:15px; text-decoration:none; font-size:14px; }
+    nav a:hover { text-decoration:underline; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px; background:#ffffff; margin-top:20px; margin-bottom:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05); border-radius:8px; }
+    h1 { font-size: 28px; margin-bottom: 10px; }
+    h2 { margin-top: 30px; }
+    .highlight { font-weight: bold; color: #d97757; }
+    ul, ol { padding-left:20px; }
+    .cta-box { border: 1px solid #e5e7eb; padding: 16px; margin-top: 20px; background: #f9fafb; border-radius:6px; }
+    .cta-button {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #2563eb;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-weight:600;
+    }
+    .cta-button:hover { background: #1d4ed8; }
+  </style>
+</head>
+<body>
+<header>
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h1>Nekton India</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <h1>
+    <span data-service>Bag Manufacturers</span>
+    in
+    <span data-city>Mumbai</span>
+  </h1>
+
+  <p>
+    Are you looking for trusted
+    <span class="highlight">
+      <span data-service>Bag Manufacturers</span> in
+      <span data-city>Mumbai</span>
+    </span>?
+    Nekton India helps you connect with verified manufacturers and suppliers for wholesale, retail, and custom orders.
+  </p>
+
+  <p>
+    Our partners in <span data-city>Mumbai</span> specialize in high-quality materials, competitive pricing, and
+    reliable delivery timelines. Whether you are a brand, reseller, or corporate buyer, we can help you source the right
+    products at the right scale.
+  </p>
+
+  <h2>Why Choose Nekton India for <span data-service>Bag Manufacturers</span> in <span data-city>Mumbai</span>?</h2>
+  <ul>
+    <li>Verified manufacturing units in and around <span data-city>Mumbai</span></li>
+    <li>Flexible MOQs for startups & established brands</li>
+    <li>Custom design, branding, and private label options</li>
+    <li>Support for export orders and pan-India shipping</li>
+  </ul>
+
+  <h2>How It Works</h2>
+  <ol>
+    <li>Tell us your requirement (type of product, quantity, budget, delivery location).</li>
+    <li>We match you with suitable factories / suppliers in <span data-city>Mumbai</span>.</li>
+    <li>Get quotations, samples, and finalize your order.</li>
+  </ol>
+
+  <div class="cta-box">
+    <h2>Get Quotes from <span data-service>Bag Manufacturers</span> in <span data-city>Mumbai</span></h2>
+    <p>
+      Share your requirements and our team will connect you with the best options in
+      <span data-city>Mumbai</span> within 24–48 hours.
+    </p>
+    <a class="cta-button" id="cta-link" href="#">
+      Request Quotes Now
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; <span id="year"></span> Nekton India. All rights reserved.</p>
+</footer>
+
+<script>
+  function toTitle(str) {
+    return str
+      .replace(/-/g, " ")
+      .split(" ")
+      .filter(Boolean)
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      .join(" ");
+  }
+
+  let serviceSlug = "bag-manufacturers";
+  let citySlug    = "mumbai";
+
+  const pathname = window.location.pathname.replace(/^\/+|\/+$/g, "");
+  const lastSeg  = pathname.split("/").pop();
+  const marker   = "-in-";
+  const idx      = lastSeg.toLowerCase().lastIndexOf(marker);
+
+  if (idx > 0) {
+    serviceSlug = lastSeg.slice(0, idx);
+    citySlug    = lastSeg.slice(idx + marker.length);
+  } else if (lastSeg) {
+    citySlug = lastSeg;
+  }
+
+  const serviceMap = {
+    "bag-manufacturers": "Bag Manufacturers",
+    "bag-suppliers": "Bag Suppliers",
+    "leather-bag-manufacturers": "Leather Bag Manufacturers",
+    "leather-bag-suppliers": "Leather Bag Suppliers"
+  };
+
+  const cityMap = {
+    "mumbai": "Mumbai",
+    "dharavi": "Dharavi",
+    "delhi": "Delhi",
+    "thane": "Thane"
+  };
+
+  const serviceName = serviceMap[serviceSlug.toLowerCase()] || toTitle(serviceSlug);
+  const cityName    = cityMap[citySlug.toLowerCase()]       || toTitle(citySlug);
+
+  document.querySelectorAll("[data-service]").forEach(el => el.textContent = serviceName);
+  document.querySelectorAll("[data-city]").forEach(el => el.textContent = cityName);
+
+  const fullTitle = serviceName + " in " + cityName + " | Nekton India";
+  document.title = fullTitle;
+
+  const desc =
+    "Looking for reliable " + serviceName + " in " + cityName +
+    "? Nekton India connects you with trusted manufacturers and suppliers for bulk and custom orders.";
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute("content", desc);
+
+  const cta = document.getElementById("cta-link");
+  if (cta) {
+    cta.href =
+      "/contact?service=" + encodeURIComponent(serviceSlug) +
+      "&city=" + encodeURIComponent(citySlug);
+  }
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
