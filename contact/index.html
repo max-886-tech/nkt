@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Nekton India</title>
+  <meta
+    name="description"
+    content="Contact Nekton India to request quotes from manufacturers and suppliers."
+  />
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background:#f3f4f6; }
+    header, footer { background: #111827; color: #fff; padding: 16px 20px; }
+    header h1, footer p { margin: 0; }
+    nav a { color:#e5e7eb; margin-right:15px; text-decoration:none; font-size:14px; }
+    nav a:hover { text-decoration:underline; }
+    .container { max-width: 800px; margin: 0 auto; padding: 20px; background:#ffffff; margin-top:20px; margin-bottom:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05); border-radius:8px; }
+    h1 { font-size:28px; margin-bottom:10px; }
+    label { display:block; margin-top:10px; }
+    input, textarea { width:100%; padding:8px; margin-top:4px; border:1px solid #d1d5db; border-radius:4px; }
+    button { margin-top:12px; padding:10px 18px; background:#2563eb; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:600; }
+    button:hover { background:#1d4ed8; }
+    .small { font-size:12px; color:#6b7280; }
+  </style>
+</head>
+<body>
+<header>
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h1>Nekton India</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <h1>Contact Us</h1>
+  <p>
+    Share your requirements and we’ll connect you with suitable manufacturers.
+  </p>
+
+  <form>
+    <label> Name
+      <input type="text" name="name" required />
+    </label>
+
+    <label> Email
+      <input type="email" name="email" required />
+    </label>
+
+    <label> Product / Service Needed
+      <input type="text" name="product" id="product" />
+    </label>
+
+    <label> City / Location
+      <input type="text" name="city" id="city" />
+    </label>
+
+    <label> Details
+      <textarea name="details" rows="4"></textarea>
+    </label>
+
+    <button type="submit">Submit Enquiry</button>
+
+    <p class="small">
+      (Demo form – wire this later to email, Google Form, or backend.)
+    </p>
+  </form>
+</div>
+
+<footer>
+  <p>&copy; <span id="year"></span> Nekton India. All rights reserved.</p>
+</footer>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const svc = params.get("service");
+  const cty = params.get("city");
+  if (svc) document.getElementById("product").value = svc.replace(/-/g, " ");
+  if (cty) document.getElementById("city").value = cty.replace(/-/g, " ");
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
