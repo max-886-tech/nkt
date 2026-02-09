@@ -11,16 +11,12 @@ const cfg = JSON.parse(fs.readFileSync(cfgPath, "utf-8"));
 const SRC = path.join(repoRoot, "src");
 const DIST = path.join(repoRoot, "dist");
 
-function ensureDir(p) {
-  fs.mkdirSync(p, { recursive: true });
-}
-
-function emptyDir(p) {
+function ensureDir(p){ fs.mkdirSync(p, { recursive: true }); }
+function emptyDir(p){
   if (fs.existsSync(p)) fs.rmSync(p, { recursive: true, force: true });
   fs.mkdirSync(p, { recursive: true });
 }
-
-function copyDir(srcDir, dstDir) {
+function copyDir(srcDir, dstDir){
   ensureDir(dstDir);
   for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
     const s = path.join(srcDir, entry.name);
@@ -29,48 +25,71 @@ function copyDir(srcDir, dstDir) {
     else fs.copyFileSync(s, d);
   }
 }
-
-function render(tpl, vars) {
+function render(tpl, vars){
   let out = tpl;
-  for (const [k, v] of Object.entries(vars)) {
-    out = out.replaceAll(`{{${k}}}`, String(v));
-  }
+  for (const [k, v] of Object.entries(vars)) out = out.replaceAll(`{{${k}}}`, String(v));
   return out;
 }
-
-function titleCaseWords(s) {
-  return s
-    .split(/\s+/)
-    .filter(Boolean)
-    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
+function titleCaseWords(s){
+  return s.split(/\s+/).filter(Boolean).map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(" ");
+}
+function placeholder(text){
+  return `https://placehold.co/900x700?text=${encodeURIComponent(text)}`;
+}
+function telify(phone){
+  return phone.replace(/\s+/g,"").replace(/[()]/g,"");
 }
 
-function placeholderFor(text) {
-  const encoded = encodeURIComponent(text);
-  return `https://placehold.co/1200x630?text=${encoded}`;
-}
+const site = cfg.site || {};
+const TOP_EMAIL = site.topEmail || "[email protected]";
+const TOP_PHONE = site.topPhone || "+91 90000 00000";
+const TOP_PHONE_TEL = telify(TOP_PHONE);
+const FOOTER_ADDRESS = site.footerAddress || "Mumbai, India";
+const OFFICE_HOURS = site.officeHours || "Mon–Sat 9am – 7pm";
 
 emptyDir(DIST);
 
-// Copy assets
+// Assets
 copyDir(path.join(SRC, "assets"), path.join(DIST, "assets"));
 
-// Copy static pages (replace {{BASE}})
+// Static pages
 for (const page of ["index.html", "about.html", "contact.html"]) {
   const html = fs.readFileSync(path.join(SRC, page), "utf-8");
-  const rendered = render(html, { BASE: cfg.basePath });
+  const rendered = render(html, {
+    BASE: cfg.basePath,
+    TOP_EMAIL,
+    TOP_PHONE,
+    TOP_PHONE_TEL,
+    FOOTER_ADDRESS,
+    OFFICE_HOURS
+  });
   fs.writeFileSync(path.join(DIST, page), rendered, "utf-8");
 }
 
+// Reviews dummy (like Nekton shows Google reviews block; we keep simple cards)
+const reviews = [
+  { name: "Rahul S.", date: "2025-11-11", text: "Great quality and timely delivery. Smooth communication." },
+  { name: "Aisha K.", date: "2025-11-07", text: "Bulk order completed perfectly. Material and stitching are excellent." },
+  { name: "Vijay P.", date: "2025-09-10", text: "Good experience. Recommended manufacturer." },
+];
+const REVIEWS_HTML = reviews.map(r => `
+  <div class="card pad">
+    <strong>${r.name}</strong><br>
+    <small class="muted">${r.date}</small>
+    <p style="margin:10px 0 0">${r.text}</p>
+  </div>
+`).join("\n");
+
 // Product pages
 const tpl = fs.readFileSync(path.join(SRC, "template-product.html"), "utf-8");
-
 const pages = [];
+
 for (const product of cfg.products) {
-  const productText = product.label; // readable
-  const imgUrl = product.imageUrl || placeholderFor(productText);
+  const productText = product.label;
+  const imgUrl = product.imageUrl || placeholder(productText);
   const imgAlt = product.imageAlt || `${productText} - ${cfg.brand}`;
+  const prefix = (product.samplePrefix || product.slug.toUpperCase()).replace(/[^A-Z0-9]/g, "");
+  const count = Number(product.sampleCount || 6);
 
   for (const city of cfg.cities) {
     const slug = `${product.slug}-manufacturer-in-${city.slug}`;
@@ -85,6 +104,25 @@ for (const product of cfg.products) {
       .replaceAll("{{PRODUCT}}", productText)
       .replaceAll("{{CITY}}", cityText);
 
+    const extraNote = (cfg.extraNoteTemplate || "")
+      .replaceAll("{{PRODUCT}}", productText)
+      .replaceAll("{{CITY}}", cityText);
+
+    // Build a Nekton-style gallery: image + code label (BACKPACK-001 etc)
+    const samples = [];
+    for (let i=1; i<=count; i++){
+      const code = `${prefix}-${String(i).padStart(3,"0")}`;
+      const u = product.samples?.[i-1]?.imageUrl || placeholder(code);
+      const alt = product.samples?.[i-1]?.alt || `${code} - ${productText}`;
+      samples.push(`
+        <div class="sample">
+          <img src="${u}" alt="${alt}" loading="lazy">
+          <div class="code">${code}</div>
+        </div>
+      `);
+    }
+    const SAMPLES_HTML = samples.join("\n");
+
     const pagePath = `${cfg.basePath}/${slug}/`;
     const canonical = `${cfg.baseUrl}/${slug}/`;
 
@@ -92,11 +130,20 @@ for (const product of cfg.products) {
       BASE: cfg.basePath,
       TITLE: title,
       H1: h1,
+      BREADCRUMB_LAST: h1,
       PARAGRAPH: paragraph,
+      EXTRA_NOTE: extraNote,
       PATH: pagePath,
       CANONICAL_URL: canonical,
       IMG_URL: imgUrl,
-      IMG_ALT: imgAlt
+      IMG_ALT: imgAlt, // kept if you want to add hero img later
+      SAMPLES_HTML,
+      REVIEWS_HTML,
+      TOP_EMAIL,
+      TOP_PHONE,
+      TOP_PHONE_TEL,
+      FOOTER_ADDRESS,
+      OFFICE_HOURS
     });
 
     fs.writeFileSync(path.join(outDir, "index.html"), htmlOut, "utf-8");
@@ -104,10 +151,9 @@ for (const product of cfg.products) {
   }
 }
 
-// .nojekyll helps if you later add folders starting with underscore
+// nojekyll + robots + sitemap
 fs.writeFileSync(path.join(DIST, ".nojekyll"), "", "utf-8");
 
-// robots + sitemap
 const robots = `User-agent: *
 Allow: /
 Sitemap: ${cfg.baseUrl}/sitemap.xml
@@ -125,4 +171,4 @@ const sitemap =
   `\n</urlset>\n`;
 fs.writeFileSync(path.join(DIST, "sitemap.xml"), sitemap, "utf-8");
 
-console.log(`Generated ${pages.length} product pages into /dist`);
+console.log(`Generated ${pages.length} pages into /dist`);

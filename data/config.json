@@ -2,24 +2,36 @@
   "brand": "Sana Bags",
   "basePath": "/nkt",
   "baseUrl": "https://max-886-tech.github.io/nkt",
+  "site": {
+    "topEmail": "[email protected]",
+    "topPhone": "+91 90000 00000",
+    "footerAddress": "Mumbai, Maharashtra, India",
+    "officeHours": "Mon–Sat 9am – 7pm • Sunday Closed"
+  },
   "products": [
     {
       "slug": "backpacks",
       "label": "Backpacks",
       "imageUrl": "https://placehold.co/1200x630?text=Backpacks",
-      "imageAlt": "Backpacks - Sana Bags"
+      "imageAlt": "Backpacks - Sana Bags",
+      "samplePrefix": "BACKPACK",
+      "sampleCount": 6
     },
     {
       "slug": "laptopbags",
       "label": "Laptop Bags",
       "imageUrl": "https://placehold.co/1200x630?text=Laptop%20Bags",
-      "imageAlt": "Laptop Bags - Sana Bags"
+      "imageAlt": "Laptop Bags - Sana Bags",
+      "samplePrefix": "LAPTOPBAG",
+      "sampleCount": 6
     },
     {
       "slug": "schoolsbags",
       "label": "Schools Bags",
       "imageUrl": "https://placehold.co/1200x630?text=Schools%20Bags",
-      "imageAlt": "Schools Bags - Sana Bags"
+      "imageAlt": "Schools Bags - Sana Bags",
+      "samplePrefix": "SCHOOLBAG",
+      "sampleCount": 6
     }
   ],
   "cities": [
@@ -36,5 +48,6 @@
       "label": "Pune"
     }
   ],
-  "paragraphTemplate": "Sana Bags is dedicated to producing high-quality {{PRODUCT}} in {{CITY}} that cater to a wide range of needs, from school and college use to travel and outdoor activities. Our nylon {{PRODUCT}} are designed with durability, functionality, and style in mind, making them the ideal choice for students, professionals, and adventurers alike."
+  "paragraphTemplate": "Sana Bags is dedicated to producing high-quality {{PRODUCT}} in {{CITY}} that cater to a wide range of needs, from school and college use to travel and outdoor activities. Our nylon {{PRODUCT}} are designed with durability, functionality, and style in mind, making them the ideal choice for students, professionals, and adventurers alike.",
+  "extraNoteTemplate": "We can customize {{PRODUCT}} with your branding, materials, sizes and design requirements."
 }

@@ -1,17 +1,19 @@
-# Sana Bags - GitHub Pages Generator (Per-product images)
+# Sana Bags - Generator v3 (Nekton-like product page)
 
-This repo generates SEO-friendly static pages like:
-- /backpacks-manufacturer-in-mumbai/
-- /laptopbags-manufacturer-in-goa/
-- /schoolsbags-manufacturer-in-pune/
+This version makes product pages closer to Nekton's structure:
+- page title + breadcrumb
+- grid gallery of sample images with codes (e.g., BACKPACK-001)
+- content paragraph
+- reviews section (dummy cards)
+- footer with contact + office hours
 
-## Per-product images
-In `data/config.json`, each product can define:
-- `imageUrl`
-- `imageAlt`
-
-If missing, a placeholder image is used automatically.
+## Edit
+Open `data/config.json`:
+- `products`: set `samplePrefix` and `sampleCount` per product
+- optionally add `samples` array per product (to override placeholder images)
+- `cities`
+- `paragraphTemplate`
 
 ## Deploy
 Repo → Settings → Pages → Source: **GitHub Actions**
-Every push to `main` regenerates and deploys the site from `dist/`.
+Push to main → Actions builds `dist/` and deploys.

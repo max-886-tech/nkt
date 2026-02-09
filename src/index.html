@@ -7,33 +7,62 @@
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <nav class="nav">
-    <a href="{{BASE}}/index.html">Home</a>
-    <a href="{{BASE}}/about.html">About</a>
-    <a href="{{BASE}}/contact.html">Contact</a>
-  </nav>
+  <div class="topbar">
+    <div class="container">
+      <a href="mailto:{{TOP_EMAIL}}">{{TOP_EMAIL}}</a>
+      <span class="sep">•</span>
+      <a href="tel:{{TOP_PHONE_TEL}}">{{TOP_PHONE}}</a>
+    </div>
+  </div>
 
-  <main class="wrap">
-    <h1>Sana Bags</h1>
-    <p>Static home page (GitHub Pages + GitHub Actions generator demo).</p>
+  <header class="header">
+    <div class="container header-row">
+      <a class="brand" href="{{BASE}}/index.html">Sana Bags</a>
+      <nav class="nav">
+        <a href="{{BASE}}/index.html">Home</a>
+        <a href="{{BASE}}/about.html">About</a>
+        <a href="{{BASE}}/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <h2>Generated pages</h2>
-    <p>These are generated at build time (SEO friendly):</p>
-    <ul>
-      <li><a href="{{BASE}}/backpacks-manufacturer-in-mumbai/">/backpacks-manufacturer-in-mumbai/</a></li>
-      <li><a href="{{BASE}}/laptopbags-manufacturer-in-goa/">/laptopbags-manufacturer-in-goa/</a></li>
-      <li><a href="{{BASE}}/schoolsbags-manufacturer-in-pune/">/schoolsbags-manufacturer-in-pune/</a></li>
-    </ul>
+  <main class="container content">
+    <h1>Home</h1>
+    <p>This is a static page. Product+city pages are generated (SEO friendly) by GitHub Actions.</p>
+
+    <div class="grid3">
+      <a class="card" href="{{BASE}}/backpacks-manufacturer-in-mumbai/">
+        <strong>Backpacks</strong>
+        <span class="muted">Mumbai</span>
+      </a>
+      <a class="card" href="{{BASE}}/laptopbags-manufacturer-in-goa/">
+        <strong>Laptop Bags</strong>
+        <span class="muted">Goa</span>
+      </a>
+      <a class="card" href="{{BASE}}/schoolsbags-manufacturer-in-pune/">
+        <strong>Schools Bags</strong>
+        <span class="muted">Pune</span>
+      </a>
+    </div>
   </main>
 
   <footer class="footer">
-    <div class="wrap">
+    <div class="container footer-grid">
+      <div>
+        <h4>Contact</h4>
+        <p class="muted">{{FOOTER_ADDRESS}}</p>
+        <p><a href="tel:{{TOP_PHONE_TEL}}">{{TOP_PHONE}}</a><br><a href="mailto:{{TOP_EMAIL}}">{{TOP_EMAIL}}</a></p>
+      </div>
+      <div>
+        <h4>Office Hours</h4>
+        <p class="muted">{{OFFICE_HOURS}}</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
       <small>© <span id="y"></span> Sana Bags</small>
     </div>
   </footer>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
