@@ -8,6 +8,10 @@
       "label": "backpacks"
     },
     {
+      "slug": "laptopbags",
+      "label": "laptopbags"
+    },
+    {
       "slug": "schoolsbags",
       "label": "schoolsbags"
     }
@@ -16,6 +20,10 @@
     {
       "slug": "mumbai",
       "label": "Mumbai"
+    },
+    {
+      "slug": "goa",
+      "label": "Goa"
     },
     {
       "slug": "pune",
