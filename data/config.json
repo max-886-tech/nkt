@@ -1,0 +1,26 @@
+{
+  "brand": "Sana Bags",
+  "basePath": "/nkt",
+  "baseUrl": "https://max-886-tech.github.io/nkt",
+  "products": [
+    {
+      "slug": "backpacks",
+      "label": "backpacks"
+    },
+    {
+      "slug": "schoolsbags",
+      "label": "schoolsbags"
+    }
+  ],
+  "cities": [
+    {
+      "slug": "mumbai",
+      "label": "Mumbai"
+    },
+    {
+      "slug": "pune",
+      "label": "Pune"
+    }
+  ],
+  "paragraphTemplate": "Sana Bags is dedicated to producing high-quality {{PRODUCT}} in {{CITY}} that cater to a wide range of needs, from school and college use to travel and outdoor activities. Our nylon {{PRODUCT}} are designed with durability, functionality, and style in mind, making them the ideal choice for students, professionals, and adventurers alike."
+}

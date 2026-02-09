@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{TITLE}}</title>
+  <link rel="stylesheet" href="{{BASE}}/assets/style.css" />
+  <link rel="canonical" href="{{CANONICAL_URL}}" />
+</head>
+<body>
+  <nav class="nav">
+    <a href="{{BASE}}/index.html">Home</a>
+    <a href="{{BASE}}/about.html">About</a>
+    <a href="{{BASE}}/contact.html">Contact</a>
+  </nav>
+
+  <main class="wrap">
+    <h1>{{H1}}</h1>
+    <p>{{PARAGRAPH}}</p>
+
+    <hr />
+    <p><small>URL: <code>{{PATH}}</code></small></p>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <small>© <span id="y"></span> Sana Bags</small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

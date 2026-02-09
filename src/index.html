@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sana Bags | Home</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a href="{{BASE}}/index.html">Home</a>
+    <a href="{{BASE}}/about.html">About</a>
+    <a href="{{BASE}}/contact.html">Contact</a>
+  </nav>
+
+  <main class="wrap">
+    <h1>Sana Bags</h1>
+    <p>Static home page (GitHub Pages + GitHub Actions generator demo).</p>
+
+    <h2>Test pages</h2>
+    <ul>
+      <li><a href="{{BASE}}/backpacks-manufacturer-in-mumbai/">/backpacks-manufacturer-in-mumbai/</a></li>
+      <li><a href="{{BASE}}/backpacks-manufacturer-in-pune/">/backpacks-manufacturer-in-pune/</a></li>
+      <li><a href="{{BASE}}/schoolsbags-manufacturer-in-pune/">/schoolsbags-manufacturer-in-pune/</a></li>
+    </ul>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <small>© <span id="y"></span> Sana Bags</small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
