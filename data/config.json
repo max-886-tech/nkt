@@ -5,7 +5,8 @@
   "site": {
     "topEmail": "info@example.com",
     "topPhone": "+91 90000 00000",
-    "footerAddress": "Mumbai, Maharashtra, India"
+    "footerAddress": "Mumbai, Maharashtra, India",
+    "whatsappNumber": "919000000000"
   },
   "products": [
     {
