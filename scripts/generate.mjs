@@ -46,6 +46,11 @@ function titleCaseWords(s) {
     .join(" ");
 }
 
+function placeholderFor(text) {
+  const encoded = encodeURIComponent(text);
+  return `https://placehold.co/1200x630?text=${encoded}`;
+}
+
 emptyDir(DIST);
 
 // Copy assets
@@ -63,12 +68,15 @@ const tpl = fs.readFileSync(path.join(SRC, "template-product.html"), "utf-8");
 
 const pages = [];
 for (const product of cfg.products) {
+  const productText = product.label; // readable
+  const imgUrl = product.imageUrl || placeholderFor(productText);
+  const imgAlt = product.imageAlt || `${productText} - ${cfg.brand}`;
+
   for (const city of cfg.cities) {
     const slug = `${product.slug}-manufacturer-in-${city.slug}`;
     const outDir = path.join(DIST, slug);
     ensureDir(outDir);
 
-    const productText = product.label;
     const cityText = city.label;
 
     const h1 = `${titleCaseWords(productText)} manufacturer in ${cityText}`;
@@ -80,16 +88,18 @@ for (const product of cfg.products) {
     const pagePath = `${cfg.basePath}/${slug}/`;
     const canonical = `${cfg.baseUrl}/${slug}/`;
 
-    const html = render(tpl, {
+    const htmlOut = render(tpl, {
       BASE: cfg.basePath,
       TITLE: title,
       H1: h1,
       PARAGRAPH: paragraph,
       PATH: pagePath,
-      CANONICAL_URL: canonical
+      CANONICAL_URL: canonical,
+      IMG_URL: imgUrl,
+      IMG_ALT: imgAlt
     });
 
-    fs.writeFileSync(path.join(outDir, "index.html"), html, "utf-8");
+    fs.writeFileSync(path.join(outDir, "index.html"), htmlOut, "utf-8");
     pages.push({ loc: canonical });
   }
 }

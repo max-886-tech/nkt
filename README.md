@@ -1,27 +1,17 @@
-# Sana Bags - GitHub Pages Generator (Minimal)
+# Sana Bags - GitHub Pages Generator (Per-product images)
 
 This repo generates SEO-friendly static pages like:
-
 - /backpacks-manufacturer-in-mumbai/
-- /backpacks-manufacturer-in-pune/
+- /laptopbags-manufacturer-in-goa/
 - /schoolsbags-manufacturer-in-pune/
 
-## Edit what gets generated
+## Per-product images
+In `data/config.json`, each product can define:
+- `imageUrl`
+- `imageAlt`
 
-Open `data/config.json` and change:
+If missing, a placeholder image is used automatically.
 
-- `basePath`: must be `/nkt` for your repo `nkt`
-- `baseUrl`: must be `https://max-886-tech.github.io/nkt`
-- `products` and `cities`
-- `paragraphTemplate`
-
-## How deployment works
-
-Every push to `main` runs `.github/workflows/pages.yml`:
-- runs `node scripts/generate.mjs`
-- outputs website into `dist/`
-- deploys `dist/` to GitHub Pages
-
-## First time setup
-
-GitHub repo → Settings → Pages → Source: **GitHub Actions**
+## Deploy
+Repo → Settings → Pages → Source: **GitHub Actions**
+Every push to `main` regenerates and deploys the site from `dist/`.
