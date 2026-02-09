@@ -10,6 +10,8 @@ const cfg = JSON.parse(fs.readFileSync(cfgPath, "utf-8"));
 
 const SRC = path.join(repoRoot, "src");
 const DIST = path.join(repoRoot, "dist");
+const SRC_IMG = path.join(SRC, "img");
+const DIST_IMG = path.join(DIST, "img");
 
 function ensureDir(p){ fs.mkdirSync(p, { recursive: true }); }
 function emptyDir(p){
@@ -34,116 +36,114 @@ function titleCaseWords(s){
   return s.split(/\s+/).filter(Boolean).map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(" ");
 }
 function placeholder(text){
-  return `https://placehold.co/900x700?text=${encodeURIComponent(text)}`;
+  return `https://placehold.co/900x900?text=${encodeURIComponent(text)}`;
 }
 function telify(phone){
   return phone.replace(/\s+/g,"").replace(/[()]/g,"");
 }
+function listImages(dir){
+  if (!fs.existsSync(dir)) return [];
+  const exts = new Set([".jpg",".jpeg",".png",".webp",".gif"]);
+  const files = fs.readdirSync(dir)
+    .filter(f => exts.has(path.extname(f).toLowerCase()))
+    .sort((a,b)=>a.localeCompare(b, undefined, { numeric:true, sensitivity:"base" }));
+  return files;
+}
 
 const site = cfg.site || {};
-const TOP_EMAIL = site.topEmail || "[email protected]";
+const TOP_EMAIL = site.topEmail || "info@example.com";
 const TOP_PHONE = site.topPhone || "+91 90000 00000";
 const TOP_PHONE_TEL = telify(TOP_PHONE);
 const FOOTER_ADDRESS = site.footerAddress || "Mumbai, India";
-const OFFICE_HOURS = site.officeHours || "Mon–Sat 9am – 7pm";
 
 emptyDir(DIST);
 
-// Assets
+// Copy assets
 copyDir(path.join(SRC, "assets"), path.join(DIST, "assets"));
+
+// Copy all images (if any) from src/img -> dist/img
+if (fs.existsSync(SRC_IMG)) {
+  copyDir(SRC_IMG, DIST_IMG);
+}
 
 // Static pages
 for (const page of ["index.html", "about.html", "contact.html"]) {
   const html = fs.readFileSync(path.join(SRC, page), "utf-8");
   const rendered = render(html, {
     BASE: cfg.basePath,
-    TOP_EMAIL,
-    TOP_PHONE,
-    TOP_PHONE_TEL,
-    FOOTER_ADDRESS,
-    OFFICE_HOURS
+    TOP_EMAIL, TOP_PHONE, TOP_PHONE_TEL, FOOTER_ADDRESS
   });
   fs.writeFileSync(path.join(DIST, page), rendered, "utf-8");
 }
-
-// Reviews dummy (like Nekton shows Google reviews block; we keep simple cards)
-const reviews = [
-  { name: "Rahul S.", date: "2025-11-11", text: "Great quality and timely delivery. Smooth communication." },
-  { name: "Aisha K.", date: "2025-11-07", text: "Bulk order completed perfectly. Material and stitching are excellent." },
-  { name: "Vijay P.", date: "2025-09-10", text: "Good experience. Recommended manufacturer." },
-];
-const REVIEWS_HTML = reviews.map(r => `
-  <div class="card pad">
-    <strong>${r.name}</strong><br>
-    <small class="muted">${r.date}</small>
-    <p style="margin:10px 0 0">${r.text}</p>
-  </div>
-`).join("\n");
 
 // Product pages
 const tpl = fs.readFileSync(path.join(SRC, "template-product.html"), "utf-8");
 const pages = [];
 
 for (const product of cfg.products) {
-  const productText = product.label;
-  const imgUrl = product.imageUrl || placeholder(productText);
-  const imgAlt = product.imageAlt || `${productText} - ${cfg.brand}`;
-  const prefix = (product.samplePrefix || product.slug.toUpperCase()).replace(/[^A-Z0-9]/g, "");
-  const count = Number(product.sampleCount || 6);
+  const productLabel = product.label;
+  const productSlug = product.slug;
+  const prefix = (product.samplePrefix || productSlug.toUpperCase()).replace(/[^A-Z0-9]/g,"");
+  const fallbackCount = Number(product.sampleCount || 9);
+
+  // If real images exist in src/img/<productSlug>/, use them.
+  const imgDir = path.join(SRC_IMG, productSlug);
+  const realFiles = listImages(imgDir);
+
+  // Build gallery items list
+  const galleryItems = [];
+  const useFiles = realFiles.length > 0 ? realFiles : Array.from({length:fallbackCount}, (_,i)=>null);
+
+  for (let i=0; i<useFiles.length; i++){
+    const code = `${prefix}-${String(i+1).padStart(3,"0")}`;
+    let imgSrc = "";
+    let alt = `${code} - ${productLabel}`;
+
+    if (realFiles.length > 0) {
+      // Use real image under /img/<slug>/<filename> with basePath prefix
+      imgSrc = `${cfg.basePath}/img/${productSlug}/${useFiles[i]}`;
+    } else {
+      // placeholder
+      imgSrc = placeholder(code);
+    }
+
+    galleryItems.push(`
+      <div class="item">
+        <img src="${imgSrc}" alt="${alt}" loading="lazy">
+        <span class="code-btn">${code}</span>
+      </div>
+    `);
+  }
 
   for (const city of cfg.cities) {
-    const slug = `${product.slug}-manufacturer-in-${city.slug}`;
-    const outDir = path.join(DIST, slug);
+    const cityLabel = city.label;
+    const routeSlug = `${productSlug}-manufacturer-in-${city.slug}`;
+    const outDir = path.join(DIST, routeSlug);
     ensureDir(outDir);
 
-    const cityText = city.label;
-
-    const h1 = `${titleCaseWords(productText)} manufacturer in ${cityText}`;
+    const h1 = `${titleCaseWords(productLabel)} manufacturer in ${cityLabel}`;
     const title = `${h1} | ${cfg.brand}`;
+    const intro = (cfg.introTemplate || "")
+      .replaceAll("{{PRODUCT}}", productLabel)
+      .replaceAll("{{CITY}}", cityLabel);
+
     const paragraph = cfg.paragraphTemplate
-      .replaceAll("{{PRODUCT}}", productText)
-      .replaceAll("{{CITY}}", cityText);
+      .replaceAll("{{PRODUCT}}", productLabel)
+      .replaceAll("{{CITY}}", cityLabel);
 
-    const extraNote = (cfg.extraNoteTemplate || "")
-      .replaceAll("{{PRODUCT}}", productText)
-      .replaceAll("{{CITY}}", cityText);
-
-    // Build a Nekton-style gallery: image + code label (BACKPACK-001 etc)
-    const samples = [];
-    for (let i=1; i<=count; i++){
-      const code = `${prefix}-${String(i).padStart(3,"0")}`;
-      const u = product.samples?.[i-1]?.imageUrl || placeholder(code);
-      const alt = product.samples?.[i-1]?.alt || `${code} - ${productText}`;
-      samples.push(`
-        <div class="sample">
-          <img src="${u}" alt="${alt}" loading="lazy">
-          <div class="code">${code}</div>
-        </div>
-      `);
-    }
-    const SAMPLES_HTML = samples.join("\n");
-
-    const pagePath = `${cfg.basePath}/${slug}/`;
-    const canonical = `${cfg.baseUrl}/${slug}/`;
+    const pagePath = `${cfg.basePath}/${routeSlug}/`;
+    const canonical = `${cfg.baseUrl}/${routeSlug}/`;
 
     const htmlOut = render(tpl, {
       BASE: cfg.basePath,
       TITLE: title,
       H1: h1,
-      BREADCRUMB_LAST: h1,
+      INTRO: intro,
       PARAGRAPH: paragraph,
-      EXTRA_NOTE: extraNote,
       PATH: pagePath,
       CANONICAL_URL: canonical,
-      IMG_URL: imgUrl,
-      IMG_ALT: imgAlt, // kept if you want to add hero img later
-      SAMPLES_HTML,
-      REVIEWS_HTML,
-      TOP_EMAIL,
-      TOP_PHONE,
-      TOP_PHONE_TEL,
-      FOOTER_ADDRESS,
-      OFFICE_HOURS
+      GALLERY_HTML: galleryItems.join("\n"),
+      TOP_EMAIL, TOP_PHONE, TOP_PHONE_TEL, FOOTER_ADDRESS
     });
 
     fs.writeFileSync(path.join(outDir, "index.html"), htmlOut, "utf-8");
@@ -151,7 +151,7 @@ for (const product of cfg.products) {
   }
 }
 
-// nojekyll + robots + sitemap
+// .nojekyll + sitemap + robots
 fs.writeFileSync(path.join(DIST, ".nojekyll"), "", "utf-8");
 
 const robots = `User-agent: *

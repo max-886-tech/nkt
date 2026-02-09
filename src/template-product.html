@@ -8,15 +8,7 @@
   <link rel="canonical" href="{{CANONICAL_URL}}" />
 </head>
 <body>
-  <div class="topbar">
-    <div class="container">
-      <a href="mailto:{{TOP_EMAIL}}">{{TOP_EMAIL}}</a>
-      <span class="sep">•</span>
-      <a href="tel:{{TOP_PHONE_TEL}}">{{TOP_PHONE}}</a>
-    </div>
-  </div>
-
-  <header class="header">
+  <header class="site-header">
     <div class="container header-row">
       <a class="brand" href="{{BASE}}/index.html">Sana Bags</a>
       <nav class="nav">
@@ -27,52 +19,25 @@
     </div>
   </header>
 
-  <section class="page-hero">
-    <div class="container">
-      <h1 class="page-title">{{H1}}</h1>
-      <ol class="breadcrumb">
-        <li><a href="{{BASE}}/index.html">Home</a></li>
-        <li aria-hidden="true">›</li>
-        <li>{{BREADCRUMB_LAST}}</li>
-      </ol>
-    </div>
-  </section>
-
   <main class="container content">
-    <div class="gallery">
-      {{SAMPLES_HTML}}
-    </div>
+    <h1 class="center">{{H1}}</h1>
+    <p class="center muted lead">{{INTRO}}</p>
+
+    <section class="gallery-grid">
+      {{GALLERY_HTML}}
+    </section>
 
     <div class="prose">
       <p>{{PARAGRAPH}}</p>
-      <p class="muted">{{EXTRA_NOTE}}</p>
     </div>
 
-    <section class="reviews">
-      <h2 class="section-title">Reviews</h2>
-      <div class="grid3">
-        {{REVIEWS_HTML}}
-      </div>
-    </section>
-
-    <div class="card pad">
+    <div class="card pad" style="margin-top:18px">
       <p><small>URL: <code>{{PATH}}</code></small></p>
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <h4>Contact</h4>
-        <p class="muted">{{FOOTER_ADDRESS}}</p>
-        <p><a href="tel:{{TOP_PHONE_TEL}}">{{TOP_PHONE}}</a><br><a href="mailto:{{TOP_EMAIL}}">{{TOP_EMAIL}}</a></p>
-      </div>
-      <div>
-        <h4>Office Hours</h4>
-        <p class="muted">{{OFFICE_HOURS}}</p>
-      </div>
-    </div>
-    <div class="container footer-bottom">
+  <footer class="site-footer">
+    <div class="container footer-row">
       <small>© <span id="y"></span> Sana Bags</small>
     </div>
   </footer>
