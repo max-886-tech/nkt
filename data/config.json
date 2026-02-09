@@ -37,6 +37,10 @@
       "label": "Goa"
     },
     {
+      "slug": "chennai",
+      "label": "Chennai"
+    },
+    {
       "slug": "pune",
       "label": "Pune"
     }
