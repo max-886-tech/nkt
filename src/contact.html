@@ -1,22 +1,20 @@
+
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sana Bags | Contact</title>
+  <title>Sana Bags | Home</title>
+
+  <meta name="site-base" content="{{BASE}}" />
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-row">
-      <a class="brand" href="{{BASE}}/index.html">Sana Bags</a>
-      <nav class="nav">
-        <a href="{{BASE}}/index.html">Home</a>
-        <a href="{{BASE}}/about.html">About</a>
-        <a href="{{BASE}}/contact.html" aria-current="page">Contact</a>
-      </nav>
-    </div>
-  </header>
+
+  <div id="site-header"></div>
 
   <main class="container content">
     <h1>Contact</h1>
@@ -26,13 +24,8 @@
       <p><strong>Address:</strong> {{FOOTER_ADDRESS}}</p>
     </div>
   </main>
+  <div id="site-footer"></div>
 
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <small>© <span id="y"></span> Sana Bags</small>
-    </div>
-  </footer>
-
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="{{BASE}}/assets/layout.js"></script>
 </body>
 </html>

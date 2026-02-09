@@ -66,6 +66,12 @@ if (fs.existsSync(SRC_IMG)) {
   copyDir(SRC_IMG, DIST_IMG);
 }
 
+// Copy partials so the browser can fetch them
+if (fs.existsSync(path.join(SRC, "partials"))) {
+  copyDir(path.join(SRC, "partials"), path.join(DIST, "partials"));
+}
+
+
 // Static pages
 for (const page of ["index.html", "about.html", "contact.html"]) {
   const html = fs.readFileSync(path.join(SRC, page), "utf-8");

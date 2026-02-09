@@ -4,19 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Sana Bags | Home</title>
+
+  <meta name="site-base" content="{{BASE}}" />
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-row">
-      <a class="brand" href="{{BASE}}/index.html">Sana Bags</a>
-      <nav class="nav">
-        <a href="{{BASE}}/index.html" aria-current="page">Home</a>
-        <a href="{{BASE}}/about.html">About</a>
-        <a href="{{BASE}}/contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
+
+  <div id="site-header"></div>
 
   <main class="container content">
     <h1>Home</h1>
@@ -35,12 +29,11 @@
     </p>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <small>© <span id="y"></span> Sana Bags</small>
-    </div>
-  </footer>
+  <div id="site-footer"></div>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="{{BASE}}/assets/layout.js"></script>
 </body>
 </html>
+
+
+
