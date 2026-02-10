@@ -3,264 +3,45 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Products</title>
-
-  <meta name="site-base" content="{{BASE}}" />
-
-  <!-- Bootstrap only (no local CSS) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>{{TITLE}}</title>
+  <link rel="stylesheet" href="{{BASE}}/assets/style.css" />
+  <link rel="canonical" href="{{CANONICAL_URL}}" />
 </head>
-
-<body class="bg-light">
-  <div id="site-header"></div>
-
-  <main class="py-4">
-    <div class="container">
-
-      <!-- Breadcrumb -->
-      <nav aria-label="breadcrumb" class="mb-3">
-        <ol class="breadcrumb mb-0">
-          <li class="breadcrumb-item"><a class="text-decoration-none" href="{{BASE}}/index.html">Home</a></li>
-          <li class="breadcrumb-item"><a class="text-decoration-none" href="{{BASE}}/shop.html">Shop</a></li>
-          <li class="breadcrumb-item active" id="bcCurrent" aria-current="page">Products</li>
-        </ol>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="{{BASE}}/index.html">Sana Bags</a>
+      <nav class="nav">
+        <a href="{{BASE}}/index.html">Home</a>
+        <a href="{{BASE}}/about.html">About</a>
+        <a href="{{BASE}}/contact.html">Contact</a>
       </nav>
+    </div>
+  </header>
 
-      <!-- HERO (like Nekton: title + intro) -->
-      <div class="p-4 p-lg-5 bg-white border rounded-3 shadow-sm mb-4">
-        <div class="row g-4 align-items-center">
-          <div class="col-lg-8">
-            <h1 class="display-6 fw-bold mb-2" id="pageH1">Products</h1>
-            <p class="lead text-secondary mb-3" id="pageIntro"></p>
-            <div class="d-flex flex-wrap gap-2">
-              <span class="badge text-bg-dark">Bulk Orders</span>
-              <span class="badge text-bg-primary">Custom Logo</span>
-              <span class="badge text-bg-success">Export Quality</span>
-              <span class="badge text-bg-warning">Fast Dispatch</span>
-            </div>
-          </div>
+  <main class="container content">
+    <h1 class="center">{{H1}}</h1>
+    <p class="center muted lead">{{INTRO}}</p>
 
-          <div class="col-lg-4">
-            <div class="bg-light border rounded-3 p-3">
-              <div class="fw-bold mb-2">Select Category / City</div>
+    <section class="gallery-grid">
+      {{GALLERY_HTML}}
+    </section>
 
-              <label class="form-label small text-muted mb-1">Category</label>
-              <select id="selCat" class="form-select mb-3"></select>
+    <div class="prose">
+      <p>{{PARAGRAPH}}</p>
+    </div>
 
-              <label class="form-label small text-muted mb-1">City</label>
-              <select id="selCity" class="form-select"></select>
-
-              <a id="btnWhatsAppTop" class="btn btn-success w-100 mt-3" target="_blank" rel="noopener">
-                WhatsApp For Quote
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row g-4">
-        <!-- LEFT: Filters -->
-        <aside class="col-lg-3">
-          <div class="bg-white border rounded-3 p-3 shadow-sm">
-            <div class="fw-bold mb-2">Quick Info</div>
-            <ul class="small text-secondary mb-0">
-              <li>MOQ depends on design & branding</li>
-              <li>Nylon / Polyester / Canvas options</li>
-              <li>Logo printing / embroidery available</li>
-              <li>Delivery across India</li>
-            </ul>
-          </div>
-        </aside>
-
-        <!-- RIGHT: Product Grid -->
-        <section class="col-lg-9">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="small text-muted" id="resultText"></div>
-            <div class="d-flex align-items-center gap-2">
-              <span class="small text-muted">Sort</span>
-              <select id="selSort" class="form-select form-select-sm" style="width:auto">
-                <option value="featured">Featured</option>
-                <option value="code">Code</option>
-                <option value="name">Name</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="bg-white border rounded-3 p-3 shadow-sm">
-            <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3" id="grid"></div>
-          </div>
-
-          <!-- Paragraph like Nekton/Sana -->
-          <div class="bg-white border rounded-3 p-4 shadow-sm mt-4">
-            <h2 class="h4 mb-2">About this category</h2>
-            <p class="text-secondary mb-0" id="pagePara"></p>
-          </div>
-        </section>
-      </div>
-
+    <div class="card pad" style="margin-top:18px">
+      <p><small>URL: <code>{{PATH}}</code></small></p>
     </div>
   </main>
 
-  <div id="site-footer"></div>
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <small>© <span id="y"></span> Sana Bags</small>
+    </div>
+  </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Your layout injector (loads config + header/footer + placeholders) -->
-  <script src="{{BASE}}/assets/layout.js"></script>
-
-  <!-- JSON renderer -->
-  <script>
-    (async function () {
-      const site = await window.__SITE_READY__;
-      const cfg = site.cfg || {};
-      const base = site.base || "";
-      const vars = site.vars || {};
-
-      const qs = new URLSearchParams(location.search);
-      const catSlug = qs.get("cat") || (cfg.products && cfg.products[0] && cfg.products[0].slug) || "backpacks";
-      const citySlug = qs.get("city") || (cfg.cities && cfg.cities[0] && cfg.cities[0].slug) || "mumbai";
-
-      const catList = cfg.products || [];
-      const cityList = cfg.cities || [];
-
-      const catObj = catList.find(x => x.slug === catSlug) || catList[0] || { slug: catSlug, label: catSlug };
-      const cityObj = cityList.find(x => x.slug === citySlug) || cityList[0] || { slug: citySlug, label: citySlug };
-
-      // Fill selects
-      const selCat = document.getElementById("selCat");
-      const selCity = document.getElementById("selCity");
-      selCat.innerHTML = catList.map(p => `<option value="${p.slug}">${p.label}</option>`).join("");
-      selCity.innerHTML = cityList.map(c => `<option value="${c.slug}">${c.label}</option>`).join("");
-      selCat.value = catObj.slug;
-      selCity.value = cityObj.slug;
-
-      function tpl(str, map) {
-        return String(str || "").replace(/\{\{(\w+)\}\}/g, (_, k) => map[k] ?? "");
-      }
-
-      // Text like your config templates
-      const h1 = `${catObj.label} Manufacturers in ${cityObj.label}`;
-      document.getElementById("pageH1").textContent = h1;
-      document.getElementById("bcCurrent").textContent = catObj.label;
-      document.title = h1;
-
-      document.getElementById("pageIntro").textContent = tpl(cfg.introTemplate, {
-        PRODUCT: catObj.label,
-        CITY: cityObj.label
-      });
-
-      document.getElementById("pagePara").textContent = tpl(cfg.paragraphTemplate, {
-        PRODUCT: catObj.label,
-        CITY: cityObj.label
-      });
-
-      // WhatsApp top button
-      const topMsg = `Hi, I need bulk order quote for ${catObj.label} in ${cityObj.label}. Please share MOQ, price & branding options.`;
-      document.getElementById("btnWhatsAppTop").href =
-        `https://wa.me/${vars.WHATSAPP_NUMBER}?text=${encodeURIComponent(topMsg)}`;
-
-      // Load catalog JSON (data/catalog.json)
-      async function tryLoadJSON(url) {
-        try {
-          const res = await fetch(url, { cache: "no-cache" });
-          if (!res.ok) return null;
-          return await res.json();
-        } catch { return null; }
-      }
-
-      const catalog =
-        (await tryLoadJSON(`${base}/data/catalog.json`)) ||
-        (await tryLoadJSON(`./data/catalog.json`)) ||
-        { items: [] };
-
-      let items = (catalog.items || []).filter(x => x.category === catObj.slug);
-
-      // If no items in JSON, generate samples using config sampleCount
-      if (!items.length && catObj.sampleCount) {
-        const pad3 = (n) => String(n).padStart(3, "0");
-        items = Array.from({ length: catObj.sampleCount }).map((_, i) => ({
-          category: catObj.slug,
-          code: `${catObj.samplePrefix}-${pad3(i + 1)}`,
-          name: `${catObj.label} Sample`,
-          tagline: "Custom branding available",
-          image: ""
-        }));
-      }
-
-      // Sorting
-      const selSort = document.getElementById("selSort");
-      function sortItems(list, mode) {
-        const arr = [...list];
-        if (mode === "name") arr.sort((a,b) => (a.name||"").localeCompare(b.name||""));
-        if (mode === "code") arr.sort((a,b) => (a.code||"").localeCompare(b.code||""));
-        return arr;
-      }
-
-      // Placeholder image (no external dependency)
-      function placeholderDataUri(text) {
-        const svg =
-`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800">
-  <rect width="100%" height="100%" fill="#f1f3f5"/>
-  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-        font-family="Arial" font-size="34" fill="#6c757d">${text}</text>
-</svg>`;
-        return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
-      }
-
-      function render() {
-        const grid = document.getElementById("grid");
-        const mode = selSort.value;
-        const list = sortItems(items, mode);
-
-        document.getElementById("resultText").textContent =
-          `${list.length} design samples • Ask for bulk pricing`;
-
-        grid.innerHTML = list.map(item => {
-          const img = item.image ? `${base}/${item.image}` : placeholderDataUri(item.code || "SAMPLE");
-          const msg = `Hi, I need quote for ${catObj.label} (${item.code}) in ${cityObj.label}. Please share MOQ & price.`;
-          const wa = `https://wa.me/${vars.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-          const contact = `${base}/contact.html?cat=${encodeURIComponent(catObj.slug)}&code=${encodeURIComponent(item.code||"")}&city=${encodeURIComponent(cityObj.slug)}`;
-
-          return `
-            <div class="col">
-              <div class="card h-100 border-0 shadow-sm">
-                <div class="ratio ratio-1x1 bg-light">
-                  <img src="${img}" class="w-100 h-100 object-fit-cover" alt="${item.name || item.code}">
-                </div>
-
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-start gap-2">
-                    <h3 class="h6 mb-1">${item.name || item.code}</h3>
-                    <span class="badge text-bg-light border">${item.code || ""}</span>
-                  </div>
-                  <div class="small text-muted mb-2">${item.tagline || ""}</div>
-
-                  <div class="d-grid gap-2">
-                    <a class="btn btn-sm btn-success" href="${wa}" target="_blank" rel="noopener">WhatsApp Quote</a>
-                    <a class="btn btn-sm btn-outline-secondary" href="${contact}">Request Quote</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `;
-        }).join("");
-      }
-
-      // URL update on change
-      function updateUrl(newCat, newCity) {
-        const u = new URL(location.href);
-        u.searchParams.set("cat", newCat);
-        u.searchParams.set("city", newCity);
-        location.href = u.toString();
-      }
-
-      selCat.addEventListener("change", () => updateUrl(selCat.value, selCity.value));
-      selCity.addEventListener("change", () => updateUrl(selCat.value, selCity.value));
-      selSort.addEventListener("change", render);
-
-      render();
-    })();
-  </script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
