@@ -50,6 +50,10 @@
       "label": "Mumbai"
     },
     {
+      "slug": "dadar",
+      "label": "Dadar"
+    },
+    {
       "slug": "goa",
       "label": "Goa"
     },
