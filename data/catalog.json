@@ -5,7 +5,7 @@
       "code": "BACKPACK-001",
       "name": "Aero Gear Laptop Backpack",
       "tagline": "Water resistant \u2022 15.6 inch laptop",
-      "image": "assets/img/products/backpacks/backpack-001.webp",
+      "image": "assets/img/backpacks/5.jpg",
       "moq": 100,
       "materials": [
         "Nylon"
@@ -17,9 +17,51 @@
     {
       "category": "backpacks",
       "code": "BACKPACK-002",
+      "name": "Aero Gear Laptop Backpack",
+      "tagline": "Water resistant \u2022 15.6 inch laptop",
+      "image": "assets/img/backpacks/5.jpg",
+      "moq": 100,
+      "materials": [
+        "Nylon"
+      ],
+      "useCase": [
+        "Corporate"
+      ]
+    },
+    {
+      "category": "backpacks",
+      "code": "BACKPACK-003",
+      "name": "Aero Gear Laptop Backpack",
+      "tagline": "Water resistant \u2022 15.6 inch laptop",
+      "image": "assets/img/backpacks/5.jpg",
+      "moq": 100,
+      "materials": [
+        "Nylon"
+      ],
+      "useCase": [
+        "Corporate"
+      ]
+    },
+    {
+      "category": "backpacks",
+      "code": "BACKPACK-004",
+      "name": "Aero Gear Laptop Backpack",
+      "tagline": "Water resistant \u2022 15.6 inch laptop",
+      "image": "assets/img/backpacks/5.jpg",
+      "moq": 100,
+      "materials": [
+        "Nylon"
+      ],
+      "useCase": [
+        "Corporate"
+      ]
+    },
+    {
+      "category": "backpacks",
+      "code": "BACKPACK-005",
       "name": "School Backpack (Heavy Duty)",
       "tagline": "Strong stitching \u2022 Spacious",
-      "image": "assets/img/products/backpacks/backpack-002.webp",
+      "image": "assets/img/backpacks/5.jpg",
       "moq": 200,
       "materials": [
         "Nylon"
