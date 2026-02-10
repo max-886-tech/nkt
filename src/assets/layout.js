@@ -1,4 +1,4 @@
-(async function () {
+window.__SITE_READY__ = (async function () {
   const meta = document.querySelector('meta[name="site-base"]');
   let base = (meta?.content || "").trim().replace(/\/$/, "");
 
@@ -12,7 +12,7 @@
     }
   }
 
-  // Load config (try both /data/config.json and /config.json)
+  // Load config (try /data/config.json OR /config.json)
   const cfg =
     (base ? await tryLoadJSON(`${base}/data/config.json`) : null) ||
     (base ? await tryLoadJSON(`${base}/config.json`) : null) ||
@@ -20,7 +20,7 @@
     (await tryLoadJSON(`./config.json`)) ||
     {};
 
-  // If base is missing, use basePath from config
+  // If meta base is empty or {{BASE}}, derive from config
   if (!base || base.includes("{{")) {
     base = String(cfg.basePath || "").replace(/\/$/, "");
   }
@@ -51,9 +51,9 @@
     SOCIAL_TWITTER: social.twitter || "#",
     SOCIAL_INSTAGRAM: social.instagram || "#",
     SOCIAL_GOOGLE: social.google || "#",
-    SOCIAL_DRIBBBLE: social.dribbble || "#",
+    SOCIAL_LINKEDIN: social.linkedin || "#",
 
-    WHATSAPP_NUMBER: digitsOnly(site.whatsappNumber || ""),
+    WHATSAPP_NUMBER: digitsOnly(site.whatsappNumber || "")
   };
 
   const replaceVarsInString = (str) => {
@@ -71,7 +71,6 @@
   }
 
   function replaceVarsInDOM() {
-    // Text nodes
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     let node;
     while ((node = walker.nextNode())) {
@@ -79,7 +78,6 @@
         node.nodeValue = replaceVarsInString(node.nodeValue);
       }
     }
-    // Attributes
     document.querySelectorAll("*").forEach((el) => {
       for (const attr of Array.from(el.attributes || [])) {
         if (attr.value && attr.value.includes("{{")) {
@@ -89,26 +87,13 @@
     });
   }
 
-  // Inject header/footer
+  // Inject header/footer if placeholders exist
   const headerHost = document.getElementById("site-header");
   const footerHost = document.getElementById("site-footer");
 
   if (headerHost) {
     const headerHtml = await loadPartial(`${base}/partials/header.html`);
     headerHost.innerHTML = replaceVarsInString(headerHtml);
-
-    // active link
-    const p = location.pathname;
-    const setActive = (key) => {
-      headerHost.querySelectorAll("[data-nav]").forEach(a => a.removeAttribute("aria-current"));
-      const el = headerHost.querySelector(`[data-nav="${key}"]`);
-      if (el) el.setAttribute("aria-current", "page");
-    };
-    if (p.endsWith("/shop.html")) setActive("shop");
-    else if (p.endsWith("/about-us.html") || p.endsWith("/about.html")) setActive("about");
-    else if (p.endsWith("/faq.html")) setActive("faq");
-    else if (p.endsWith("/contact.html")) setActive("contact");
-    else setActive("home");
   }
 
   if (footerHost) {
@@ -116,6 +101,7 @@
     footerHost.innerHTML = replaceVarsInString(footerHtml);
   }
 
-  // Replace placeholders on the page too
   replaceVarsInDOM();
+
+  return { cfg, base, vars: VARS, replaceVarsInString };
 })();
