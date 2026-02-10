@@ -6,7 +6,21 @@
     "topEmail": "info@example.com",
     "topPhone": "+91 90000 00000",
     "footerAddress": "Mumbai, Maharashtra, India",
-    "whatsappNumber": "919000000000"
+    "whatsappNumber": "919000000000",
+    "footerAbout": "Sana Bags is a bag retailer offering durable, stylish bags for school, college, travel and business needs.",
+    "tweetText": "Purchase Our New WordPress WooCommerce Theme - TimePlus Goo.gl/G37uoC Pic.Twitter.Com/VS4nBq69jM",
+    "tweetDate": "01-09-16",
+    "footerCity": "Mumbai",
+    "workingHours": "08AM – 10PM",
+
+    "social": {
+    "facebook": "#",
+    "twitter": "#",
+    "instagram": "#",
+    "google": "#",
+    "dribbble": "#"
+  }
+
   },
   "products": [
     {
