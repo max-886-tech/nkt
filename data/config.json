@@ -5,20 +5,22 @@
   "site": {
     "topEmail": "info@example.com",
     "topPhone": "+91 90000 00000",
+    "topPhone2": "+91 91111 11111",
     "footerAddress": "Mumbai, Maharashtra, India",
     "whatsappNumber": "919000000000",
     "footerAbout": "Sana Bags is a bag retailer offering durable, stylish bags for school, college, travel and business needs.",
     "tweetText": "Purchase Our New WordPress WooCommerce Theme - TimePlus Goo.gl/G37uoC Pic.Twitter.Com/VS4nBq69jM",
     "tweetDate": "01-09-16",
     "footerCity": "Mumbai",
+    
     "workingHours": "08AM – 10PM",
 
     "social": {
-    "facebook": "#",
-    "twitter": "#",
-    "instagram": "#",
-    "google": "#",
-    "dribbble": "#"
+    "facebook": "https://www.facebook.com/Nektonindia",
+    "twitter": "https://x.com/Nekton_india",
+    "instagram": "https://www.instagram.com/accounts/login/?next=%2Fnektonindia%2F&source=omni_redirect",
+    "google": "https://www.youtube.com/channel/UCGXzmpX8yTOeQX5v1hbetCg",
+    "linkedin": "https://www.linkedin.com/company/nektonindia"
   }
 
   },

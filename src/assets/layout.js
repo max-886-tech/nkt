@@ -66,7 +66,7 @@
     SOCIAL_TWITTER: social.twitter || "#",
     SOCIAL_INSTAGRAM: social.instagram || "#",
     SOCIAL_GOOGLE: social.google || "#",
-    SOCIAL_DRIBBBLE: social.dribbble || "#"
+    SOCIAL_DRIBBBLE: social.linkedin || "#"
   };
 
   const replaceVarsInString = (str) => {
