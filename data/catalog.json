@@ -4,35 +4,57 @@
       "category": "backpacks",
       "code": "BACKPACK-001",
       "name": "Aero Gear Laptop Backpack",
-      "tagline": "Water resistant • 15.6 inch laptop",
+      "tagline": "Water resistant \u2022 15.6 inch laptop",
       "image": "assets/img/products/backpacks/backpack-001.webp",
-      "moq": 100
+      "moq": 100,
+      "materials": [
+        "Nylon"
+      ],
+      "useCase": [
+        "Corporate"
+      ]
     },
     {
       "category": "backpacks",
       "code": "BACKPACK-002",
       "name": "School Backpack (Heavy Duty)",
-      "tagline": "Strong stitching • Spacious",
+      "tagline": "Strong stitching \u2022 Spacious",
       "image": "assets/img/products/backpacks/backpack-002.webp",
-      "moq": 200
+      "moq": 200,
+      "materials": [
+        "Nylon"
+      ],
+      "useCase": [
+        "School / College"
+      ]
     },
-
     {
       "category": "laptopbags",
       "code": "LAPTOPBAG-001",
       "name": "Business Laptop Bag",
-      "tagline": "Premium • Multiple pockets",
+      "tagline": "Premium \u2022 Multiple pockets",
       "image": "assets/img/products/laptopbags/laptopbag-001.webp",
-      "moq": 50
+      "moq": 50,
+      "materials": [
+        "Nylon"
+      ],
+      "useCase": [
+        "Corporate"
+      ]
     },
-
     {
       "category": "schoolsbags",
       "code": "SCHOOLBAG-001",
       "name": "Institute School Bag",
-      "tagline": "Bulk supply • Logo branding",
+      "tagline": "Bulk supply \u2022 Logo branding",
       "image": "assets/img/products/schoolsbags/schoolbag-001.webp",
-      "moq": 300
+      "moq": 300,
+      "materials": [
+        "Nylon"
+      ],
+      "useCase": [
+        "School / College"
+      ]
     }
   ]
 }

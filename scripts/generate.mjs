@@ -129,10 +129,22 @@ const faqs = (cfg.faq && Array.isArray(cfg.faq) && cfg.faq.length)
       { q: "Do you deliver across India?", a: "Yes, we ship across India. Delivery time depends on quantity and customization." }
     ];
 
-function buildFilterList(items){
-  return items.map((label, idx)=>{
-    const id = `f-${idx}-${label.toLowerCase().replace(/[^a-z0-9]+/g,'-')}`;
-    return `<label class="check"><input type="checkbox" id="${id}"> <span>${label}</span></label>`;
+function slugify(s){
+  return String(s || "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g,"and")
+    .replace(/[^a-z0-9]+/g,"-")
+    .replace(/(^-|-$)/g,"");
+}
+
+function buildFilterList(items, group){
+  // items: [{label, value}] OR strings
+  return items.map((it, idx)=>{
+    const label = (typeof it === "string") ? it : it.label;
+    const value = (typeof it === "string") ? slugify(it) : String(it.value || slugify(it.label));
+    const id = `f-${group}-${idx}-${value}`;
+    return `<label class="check"><input type="checkbox" data-filter-group="${group}" name="${group}" value="${value}" id="${id}"> <span>${label}</span></label>`;
   }).join("\n");
 }
 
@@ -150,13 +162,21 @@ function buildFaqHtml(list){
 
 function buildProductCards(items, { productLabel, cityLabel, canonical }){
   const cards = [];
-  for (const it of items) {
+  for (let idx = 0; idx < items.length; idx++) {
+    const it = items[idx];
     const code = it.code || "CODE";
     const name = it.name || `${productLabel} (${code})`;
     const tagline = it.tagline || "";
     const moq = Number(it.moq || 0);
     const imgSrc = it.image || placeholder(code);
     const alt = `${code} - ${productLabel}`;
+
+    // Filters data (optional; missing fields won't block display)
+    const cat = slugify(it.category || "");
+    const matsRaw = it.materials || it.material || [];
+    const usesRaw = it.useCases || it.useCase || it.usecase || [];
+    const mats = (Array.isArray(matsRaw) ? matsRaw : String(matsRaw).split(",")).map(s=>slugify(s)).filter(Boolean);
+    const uses = (Array.isArray(usesRaw) ? usesRaw : String(usesRaw).split(",")).map(s=>slugify(s)).filter(Boolean);
 
     const waUrl = waLink(
       site.whatsappNumber,
@@ -172,7 +192,14 @@ function buildProductCards(items, { productLabel, cityLabel, canonical }){
       : `<span class="code-pill">${code}</span>`;
 
     cards.push(`
-      <article class="product-card" data-card data-name="${String(name).replaceAll('"','&quot;')}" data-moq="${moq}">
+      <article class="product-card" data-card
+        data-rank="${idx}"
+        data-name="${String(name).replaceAll('"','&quot;')}"
+        data-moq="${moq}"
+        data-category="${cat}"
+        data-material="${mats.join(',')}"
+        data-usecase="${uses.join(',')}"
+      >
         <div class="product-media">
           ${codeEl}
           <img src="${imgSrc}" alt="${alt}" loading="lazy">
@@ -256,12 +283,13 @@ for (const product of cfg.products) {
       HERO_IMAGE_SRC: heroImg,
       HERO_IMAGE_ALT: heroAlt,
 
-      FILTER_CATEGORY_HTML: buildFilterList(cfg.products.map(p => p.label)),
-      FILTER_MATERIAL_HTML: buildFilterList(filterMaterials),
-      FILTER_USECASE_HTML: buildFilterList(filterUsecases),
+      FILTER_CATEGORY_HTML: buildFilterList(cfg.products.map(p => ({ label: p.label, value: p.slug })), "category"),
+      FILTER_MATERIAL_HTML: buildFilterList(filterMaterials, "material"),
+      FILTER_USECASE_HTML: buildFilterList(filterUsecases, "usecase"),
 
       QUOTE_HREF: quoteHref,
-      RESULT_COUNT_TEXT: resultCount,
+      RESULT_COUNT: String(productItems.length),
+      RESULT_TOTAL: String(productItems.length),
       PRODUCT_CARDS_HTML: cardsHtml,
       PARAGRAPH: paragraph,
       FAQ_HTML: buildFaqHtml(faqs),

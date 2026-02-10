@@ -446,3 +446,7 @@ code{background:#f3f3f3;padding:2px 6px;border-radius:6px}
   .products{grid-template-columns:1fr}
   .hero-title{font-size:30px}
 }
+
+
+/* PRODUCT TEMPLATE: filtering */
+.product-card.is-hidden{ display:none !important; }
