@@ -33,3 +33,140 @@ a{color:inherit}
 .site-footer{border-top:1px solid var(--line);background:#fff}
 .footer-row{padding:14px 0;color:#444;text-align:center}
 code{background:#f3f3f3;padding:2px 6px;border-radius:6px}
+
+/* CONTACT PAGE (2-column like screenshot) */
+.contact-page {
+  padding: 48px 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.contact-title {
+  font-size: 28px;
+  margin: 0 0 20px;
+  font-weight: 700;
+}
+
+.contact-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 28px;
+}
+
+.contact-form .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 22px;
+}
+
+.field-full {
+  grid-column: 1 / -1;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 14px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: #f7f7f7;
+  outline: none;
+}
+
+.input:focus {
+  background: #fff;
+  border-color: rgba(0,0,0,.18);
+}
+
+.textarea {
+  min-height: 170px;
+  resize: vertical;
+}
+
+.contact-btn {
+  margin-top: 18px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 0; /* looks like the screenshot button */
+  background: var(--primary-color, #f76b6a);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* RIGHT SIDE INFO */
+.contact-info {
+  padding-top: 6px;
+}
+
+.contact-text {
+  margin: 0 0 18px;
+  line-height: 1.7;
+  color: rgba(0,0,0,.72);
+}
+
+.info-list {
+  border-top: 1px solid #eee;
+  margin-top: 18px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.info-ico {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: rgba(0,0,0,.72);
+}
+
+.info-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  color: rgba(0,0,0,.72);
+}
+
+.info-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.info-link:hover {
+  text-decoration: underline;
+}
+
+.working-hours {
+  margin-top: 18px;
+}
+
+.working-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.working-text {
+  color: rgba(0,0,0,.72);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .contact-form .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
